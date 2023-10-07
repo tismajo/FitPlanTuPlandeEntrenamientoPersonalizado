@@ -8,6 +8,7 @@ public class Main {
      * @author Holly Coti - 231204
      */
     public static void main(String[] args) throws Exception {
-
+        Vista vista = new Vista();
+        vista.desplegarMenu();
     }
 }
