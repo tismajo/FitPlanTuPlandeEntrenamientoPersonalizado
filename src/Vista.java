@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Vista {
@@ -6,7 +7,7 @@ public class Vista {
 
     public void desplegarMenu() {
             while (true) {
-                System.out.println("\nM E N Ú"); // Esto tendrá que ser modificado más tarde porque ¿se supone que deberías registrarte una vez?
+                System.out.println("\nM E N Ú"); // Esto tendrá que ser modificado más tarde porque se supone que deberías registrarte una vez
                 System.out.println("Ingresa el número de opción: ");
                 System.out.println("1. Registrar Usuario\n2. Iniciar sesión\n3. Registrar comida\n4. Ingresar ingredientes\n0. Salir del programa"); 
                 int opcion = scn.nextInt();
@@ -25,11 +26,9 @@ public class Vista {
                         controlador.iniciarSesion(nombreUsuario, contraseña);
                         break;
                     case 3:
-                        controlador.crearVerificarCSVingredientes();
-                        controlador.crearVerificarCSV();
-                        System.out.print("Ingresa el nombre de la comida que quieres ingresar: ");
                         break;
                     case 4:
+                    controlador.crearVerificarCSVingredientes();
                     scn = new Scanner(System.in);
                     System.out.println("INGRESAR INGREDIENTE NUEVO\nIngrese lo solicitado a continuación");
                         System.out.print("Ingresa el nombre del ingrediente: ");

@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Controlador {
@@ -21,29 +23,36 @@ public class Controlador {
         }
     }
 
-    public void crearVerificarCSV() {
-        File registroComida = new File("registroComidaCSV.csv");
-        if (!registroComida.exists()) {
+    public void crearVerificarCSVingredientes() {
+        File registroIngrediente = new File("ingredientesCaloriasCSV.csv");
+        if (!registroIngrediente.exists()) {
             try {
-                registroComida.createNewFile();
+                registroIngrediente.createNewFile();
                 System.out.println("Archivo ausente, se ha creado un nuevo archivo...");
+    
+                // Agregar títulos en la primera fila del archivo CSV
+                FileWriter fw = new FileWriter(registroIngrediente);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write("Nombre,Cantidad,Calorias"); 
+                bw.newLine();
+                bw.close();
+    
             } catch (IOException e) {
                 System.out.println("Error encontrado: " + e.getMessage());
             }
         }
     }
 
-    public void crearVerificarCSVingredientes() {
-        File registroComida = new File("ingredientesCaloriasCSV.csv");
+    public void comidasRegistradasCrearCSV(){
+        File registroComida = new File("comidasRegistradasCSV.csv");
         if (!registroComida.exists()) {
             try {
                 registroComida.createNewFile();
                 System.out.println("Archivo ausente, se ha creado un nuevo archivo...");
     
-                // Agregar títulos en la primera fila del archivo CSV
                 FileWriter fw = new FileWriter(registroComida);
                 BufferedWriter bw = new BufferedWriter(fw);
-                bw.write("Nombre,Cantidad,Calorias"); // Reemplaza con los títulos deseados
+                bw.write("Nombre,Ingredientes,Total de Calorias"); 
                 bw.newLine();
                 bw.close();
     
@@ -91,12 +100,15 @@ public class Controlador {
     public void agregarIngredientes(String nombre, double cantidad, double calorias){
         String archivoCSV = "ingredientesCaloriasCSV.csv";
         try (BufferedWriter wr = new BufferedWriter(new FileWriter(archivoCSV, true))){
-            wr.write(nombre+","+calorias);
+            wr.write(nombre + "," + cantidad + "," + calorias);
             System.out.println("El ingrediente: '" + nombre + "' se ha agregado con éxito");
             wr.newLine();
         } catch(IOException e){
             System.out.println("Error al ingresar datos: " + e.getMessage());
         }
     }
-}
 
+    public void ingresarComdia(){
+        
+    }
+    }
