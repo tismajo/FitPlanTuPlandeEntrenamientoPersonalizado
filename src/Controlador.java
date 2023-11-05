@@ -34,11 +34,19 @@ public class Controlador {
     }
 
     public void crearVerificarCSVingredientes() {
-        File registroComida = new File("ingredientesCSV.csv");
+        File registroComida = new File("ingredientesCaloriasCSV.csv");
         if (!registroComida.exists()) {
             try {
                 registroComida.createNewFile();
                 System.out.println("Archivo ausente, se ha creado un nuevo archivo...");
+    
+                // Agregar títulos en la primera fila del archivo CSV
+                FileWriter fw = new FileWriter(registroComida);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write("Nombre,Calorias"); // Reemplaza con los títulos deseados
+                bw.newLine();
+                bw.close();
+    
             } catch (IOException e) {
                 System.out.println("Error encontrado: " + e.getMessage());
             }
@@ -77,6 +85,15 @@ public class Controlador {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void agregarIngredientes(String nombre, double calorias){
+        String archivoCSV = "ingredientesCaloriasCSV.csv";
+        try (BufferedWriter wr = new BufferedWriter(new FileWriter(archivoCSV, true))){
+            wr.write(nombre+","+calorias);
+        } catch(IOException e){
+            System.out.println("Error al ingresar datos: " + e.getMessage());
         }
     }
 }
