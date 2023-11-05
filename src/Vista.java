@@ -30,6 +30,18 @@ public class Vista {
                         System.out.print("Ingresa el nombre de la comida que quieres ingresar: ");
                         break;
                     case 4:
+                    scn = new Scanner(System.in);
+                    System.out.println("INGRESAR INGREDIENTE NUEVO\nIngrese lo solicitado a continuación");
+                        System.out.print("Ingresa el nombre del ingrediente: ");
+                        String nombre = scn.nextLine();
+                        scn = new Scanner(System.in);
+                        System.out.print("Ingrese la cantidad de porción del ingrediente (ya sea en ml o g): ");
+                        double cantidad = scn.nextDouble();
+                        System.out.print("Ingresa el número de calorias: ");
+                        double calorias = scn.nextDouble();
+                        controlador.agregarIngredientes(nombre, cantidad, calorias);
+                        break;
+                    case 0:
                         System.exit(0);
                         break;
                     default:
