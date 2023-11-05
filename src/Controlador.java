@@ -21,6 +21,30 @@ public class Controlador {
         }
     }
 
+    public void crearVerificarCSV() {
+        File registroComida = new File("registroComidaCSV.csv");
+        if (!registroComida.exists()) {
+            try {
+                registroComida.createNewFile();
+                System.out.println("Archivo ausente, se ha creado un nuevo archivo...");
+            } catch (IOException e) {
+                System.out.println("Error encontrado: " + e.getMessage());
+            }
+        }
+    }
+
+    public void crearVerificarCSVingredientes() {
+        File registroComida = new File("ingredientesCSV.csv");
+        if (!registroComida.exists()) {
+            try {
+                registroComida.createNewFile();
+                System.out.println("Archivo ausente, se ha creado un nuevo archivo...");
+            } catch (IOException e) {
+                System.out.println("Error encontrado: " + e.getMessage());
+            }
+        }
+    }
+
     public void agregarUsuario(){ // El método para ir agregando a los usuarios
         String archivoCSV = "datosUsuarios.csv";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoCSV, true))) {

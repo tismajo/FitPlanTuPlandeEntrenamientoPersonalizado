@@ -8,7 +8,7 @@ public class Vista {
             while (true) {
                 System.out.println("\nM E N Ú"); // Esto tendrá que ser modificado más tarde porque ¿se supone que deberías registrarte una vez?
                 System.out.println("Ingresa el número de opción: ");
-                System.out.println("1. Registrar Usuario\n2. Iniciar sesión"); 
+                System.out.println("1. Registrar Usuario\n2. Iniciar sesión\n3. Registrar comida\n0. Salir del programa"); 
                 int opcion = scn.nextInt();
 
                 switch (opcion) {
@@ -25,6 +25,8 @@ public class Vista {
                         controlador.iniciarSesion(nombreUsuario, contraseña);
                         break;
                     case 3:
+                        controlador.crearVerificarCSV();
+                        System.out.print("Ingresa el nombre de la comida que quieres ingresar: ");
                         break;
                     case 4:
                         System.exit(0);
