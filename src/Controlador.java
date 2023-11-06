@@ -62,6 +62,25 @@ public class Controlador {
         }
     }
 
+    public void crearListadeEjerciciosCSV(){
+        File listaEjercicios = new File("comidasRegistradasCSV.csv");
+        if (!listaEjercicios.exists()) {
+            try {
+                listaEjercicios.createNewFile();
+                System.out.println("Archivo ausente, se ha creado un nuevo archivo...");
+    
+                FileWriter fw = new FileWriter(listaEjercicios);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write("Nombre del ejercicio,Duración,Total de Calorias Quemadas"); 
+                bw.newLine();
+                bw.close();
+    
+            } catch (IOException e) {
+                System.out.println("Error encontrado: " + e.getMessage());
+            }
+        }
+    }
+
     public void agregarUsuario(){ // El método para ir agregando a los usuarios
         String archivoCSV = "datosUsuarios.csv";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoCSV, true))) {

@@ -9,7 +9,7 @@ public class Vista {
             while (true) {
                 System.out.println("\nM E N Ú"); // Esto tendrá que ser modificado más tarde porque se supone que deberías registrarte una vez
                 System.out.println("Ingresa el número de opción: ");
-                System.out.println("1. Registrar Usuario\n2. Iniciar sesión\n3. Registrar comida\n4. Ingresar ingredientes\n0. Salir del programa"); 
+                System.out.println("1. Registrar Usuario\n2. Iniciar sesión\n3. Registrar comida\n4. Ingresar ingredientes\n5. Ejercicios\n0. Salir del programa"); 
                 int opcion = scn.nextInt();
 
                 switch (opcion) {
@@ -40,6 +40,10 @@ public class Vista {
                         double calorias = scn.nextDouble();
                         controlador.agregarIngredientes(nombre, cantidad, calorias);
                         break;
+                    case 5:
+                    controlador.crearListadeEjerciciosCSV();
+                        System.out.print("¿Qué te gustaría trabajar? ");
+                        
                     case 0:
                         System.exit(0);
                         break;
