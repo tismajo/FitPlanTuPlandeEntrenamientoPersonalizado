@@ -63,7 +63,7 @@ public class Controlador {
     }
 
     public void crearListadeEjerciciosCSV(){
-        File listaEjercicios = new File("comidasRegistradasCSV.csv");
+        File listaEjercicios = new File("listadeEjercicios.csv");
         if (!listaEjercicios.exists()) {
             try {
                 listaEjercicios.createNewFile();
