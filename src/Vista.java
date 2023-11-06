@@ -11,7 +11,6 @@ public class Vista {
                 System.out.println("Ingresa el número de opción: ");
                 System.out.println("1. Registrar Usuario\n2. Iniciar sesión\n3. Registrar comida\n4. Ingresar ingredientes\n5. Ejercicios\n0. Salir del programa"); 
                 int opcion = scn.nextInt();
-
                 switch (opcion) {
                     case 1:
                         controlador.creacionCSV();
@@ -26,6 +25,7 @@ public class Vista {
                         controlador.iniciarSesion(nombreUsuario, contraseña);
                         break;
                     case 3:
+                        controlador.ingresarComdia(); // Por agregar
                         break;
                     case 4:
                     controlador.crearVerificarCSVingredientes();
@@ -41,9 +41,8 @@ public class Vista {
                         controlador.agregarIngredientes(nombre, cantidad, calorias);
                         break;
                     case 5:
-                    controlador.crearListadeEjerciciosCSV();
-                        System.out.print("¿Qué te gustaría trabajar? ");
-                        
+                        controlador.crearListadeEjerciciosCSV();
+                        System.out.print("¿Qué te gustaría trabajar?\n1. Pierna\n2. Brazos\n3. Abdomen");
                     case 0:
                         System.exit(0);
                         break;
