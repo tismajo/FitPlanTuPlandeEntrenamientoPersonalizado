@@ -32,7 +32,7 @@ public class Vista {
                         break;
                     case 4:
                         scn = new Scanner(System.in);
-                        System.out.print("Ingresa la fecha a consultar: ");
+                        System.out.print("Ingresa la fecha a consultar (formato dd/MM/yyyy): ");
                         String fecha = scn.nextLine();
                         controlador.calcularCalorias(fecha);
                         break;

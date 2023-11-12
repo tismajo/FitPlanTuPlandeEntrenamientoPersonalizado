@@ -159,9 +159,9 @@ public class Controlador {
                 }
             }
 
-            System.out.println("La suma de los elementos de la tercera columna es: " + suma);
+            System.out.println("El total de calorías en esta fecha es: " + suma);
         } catch (IOException e) {
             e.printStackTrace();
         }
-}
+    }
 }
