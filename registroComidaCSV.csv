@@ -1,1 +1,4 @@
-Cacao,1 taza,252,235,8,11,10,0,26,Productos lácteos
+Alimento,Medida,Gramos,Calorías,Proteína,Grasa,Grasa saturada,Fibra,Carbohidratos,Categoría,Fecha
+Hamburguesa,3 oz.,85,245,21,17,15,0,0, "Carne, Aves",15/02/2023
+Cacao,1 taza,252,235,8,11,10,0,26,Productos lácteos,17/05/2023
+Lima,1 taza,160,140,8,t,t,3.0,24,Verduras A-E,17/05/2023

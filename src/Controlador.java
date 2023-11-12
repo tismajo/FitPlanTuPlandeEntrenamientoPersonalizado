@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -93,10 +95,10 @@ public class Controlador {
         }
     }
 
-    public void agregarComida(String Alimento, String Medida, double Gramos, double Calorías, double Proteína, double Grasa, double Grasasaturada, double Fibra, double Carbohidratos, String Categoria){
+    public void agregarComida(String Alimento, String Medida, double Gramos, double Calorías, double Proteína, double Grasa, double Grasasaturada, double Fibra, double Carbohidratos, String categoria){
         String archivoCSV = "archivoCSVnutrientes.csv";
         try (BufferedWriter wr = new BufferedWriter(new FileWriter(archivoCSV, true))){
-            wr.write(Alimento + "," + Medida + "," + Gramos + "," + Calorías + "," + Proteína + "," + Grasa +"," + Grasasaturada + "," + Fibra + "," + Carbohidratos + "," + Categoria
+            wr.write(Alimento + "," + Medida + "," + Gramos + "," + Calorías + "," + Proteína + "," + Grasa +"," + Grasasaturada + "," + Fibra + "," + Carbohidratos + "," + categoria
             );
             System.out.println("La comida : '" + Alimento + "' se ha agregado con éxito");
             wr.newLine();
@@ -105,28 +107,30 @@ public class Controlador {
         }
     }
 
-    public void registrarComida(String alimento){
+    public void registrarComida(String alimento) {
         String archivoCSVnutrientes = "archivoCSVnutrientes.csv";
         String archivoCSVRegistro = "registroComidaCSV.csv";
         boolean encontrado = false;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(archivoCSVnutrientes));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(archivoCSVRegistro))) {
-                
+             BufferedWriter writer = new BufferedWriter(new FileWriter(archivoCSVRegistro, true))) {
+            scn = new Scanner(System.in);
+            System.out.print("Ingrese una fecha (formato dd/MM/yyyy): ");
+            String fechaIngresada = scn.nextLine();
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] fields = line.split(",");
                 String columnValue = fields[0];
 
-                if (columnValue.equals(alimento)) {
-                    writer.write(line);
+                if (columnValue.equalsIgnoreCase(alimento)) {
+                    writer.write(line + "," + fechaIngresada);
                     writer.newLine();
                     encontrado = true;
                 }
             }
 
             if (!encontrado) {
-                System.out.println("Ingresar nuevo alimento");
+                System.out.print("No se ha encontrado el alimento, por favor ingresarlo.");
             }
 
         } catch (IOException e) {
@@ -134,4 +138,30 @@ public class Controlador {
         }
     }
 
-    }
+    public void calcularCalorias(String fecha){
+        String archivoCSV = "registroComidaCSV.csv";
+        String datoBuscado = fecha;
+        int columnaBuscada = 10; // Columna 11 (índice 10)
+        int columnaSuma = 3; // Columna 3 (índice 2)
+        double suma = 0;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivoCSV))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+                if (fields.length > columnaBuscada && fields.length > columnaSuma) {
+                    String valorBuscado = fields[columnaBuscada];
+
+                    if (valorBuscado.equals(datoBuscado)) {
+                        double valorSuma = Double.parseDouble(fields[columnaSuma]);
+                        suma += valorSuma;
+                    }
+                }
+            }
+
+            System.out.println("La suma de los elementos de la tercera columna es: " + suma);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+}
+}
