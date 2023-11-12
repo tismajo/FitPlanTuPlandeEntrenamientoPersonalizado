@@ -23,27 +23,7 @@ public class Controlador {
         }
     }
 
-    public void crearVerificarCSVingredientes() {
-        File registroIngrediente = new File("ingredientesCaloriasCSV.csv");
-        if (!registroIngrediente.exists()) {
-            try {
-                registroIngrediente.createNewFile();
-                System.out.println("Archivo ausente, se ha creado un nuevo archivo...");
-    
-                // Agregar títulos en la primera fila del archivo CSV
-                FileWriter fw = new FileWriter(registroIngrediente);
-                BufferedWriter bw = new BufferedWriter(fw);
-                bw.write("Nombre,Cantidad,Calorias"); 
-                bw.newLine();
-                bw.close();
-    
-            } catch (IOException e) {
-                System.out.println("Error encontrado: " + e.getMessage());
-            }
-        }
-    }
-
-    public void comidasRegistradasCrearCSV(){
+    public void comidasRegistradasCrearCSV(String usuario){
         File registroComida = new File("comidasRegistradasCSV.csv");
         if (!registroComida.exists()) {
             try {
@@ -52,7 +32,7 @@ public class Controlador {
     
                 FileWriter fw = new FileWriter(registroComida);
                 BufferedWriter bw = new BufferedWriter(fw);
-                bw.write("Nombre,Ingredientes,Total de Calorias"); 
+                bw.write("Alimento,Medida,Gramos,Calorías,Proteína,Grasa,Grasa saturada,Fibra,Carbohidratos,Categoría,Fecha"); 
                 bw.newLine();
                 bw.close();
     
@@ -87,14 +67,11 @@ public class Controlador {
             System.out.println("Le damos la bienvenida. \nPor favor ingresar los datos que se le solicitan: ");
             System.out.print("Ingrese nombre de usuario: ");
             String nombreUsuario = scn.nextLine();
-
             System.out.print("Ingresa la contraseña: ");
             String contraseñaUsuario = scn.nextLine();
             writer.write(nombreUsuario + "," + contraseñaUsuario);
             writer.newLine();
-
-            System.out.println("\nTe hemos registrado con éxito.");
-
+            System.out.println("\nTe hemos registrado con éxito, " + nombreUsuario);
         } catch (IOException e) {
             System.out.println("Error al escribir en el archivo CSV: " + e.getMessage());
         }
@@ -116,18 +93,45 @@ public class Controlador {
         }
     }
 
-    public void agregarIngredientes(String nombre, double cantidad, double calorias){
-        String archivoCSV = "ingredientesCaloriasCSV.csv";
+    public void agregarComida(String Alimento, String Medida, double Gramos, double Calorías, double Proteína, double Grasa, double Grasasaturada, double Fibra, double Carbohidratos, String Categoria){
+        String archivoCSV = "archivoCSVnutrientes.csv";
         try (BufferedWriter wr = new BufferedWriter(new FileWriter(archivoCSV, true))){
-            wr.write(nombre + "," + cantidad + "," + calorias);
-            System.out.println("El ingrediente: '" + nombre + "' se ha agregado con éxito");
+            wr.write(Alimento + "," + Medida + "," + Gramos + "," + Calorías + "," + Proteína + "," + Grasa +"," + Grasasaturada + "," + Fibra + "," + Carbohidratos + "," + Categoria
+            );
+            System.out.println("La comida : '" + Alimento + "' se ha agregado con éxito");
             wr.newLine();
         } catch(IOException e){
             System.out.println("Error al ingresar datos: " + e.getMessage());
         }
     }
 
-    public void ingresarComdia(){
-        
+    public void registrarComida(String alimento){
+        String archivoCSVnutrientes = "archivoCSVnutrientes.csv";
+        String archivoCSVRegistro = "registroComidaCSV.csv";
+        boolean encontrado = false;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivoCSVnutrientes));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(archivoCSVRegistro))) {
+                
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+                String columnValue = fields[0];
+
+                if (columnValue.equals(alimento)) {
+                    writer.write(line);
+                    writer.newLine();
+                    encontrado = true;
+                }
+            }
+
+            if (!encontrado) {
+                System.out.println("Ingresar nuevo alimento");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
     }
