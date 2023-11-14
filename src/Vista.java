@@ -8,8 +8,9 @@ public class Vista {
     public void desplegarMenu() {
             while (true) {
                 System.out.println("\nM E N Ú"); // Esto tendrá que ser modificado más tarde porque se supone que deberías registrarte una vez
-                System.out.println("Ingresa el número de opción: ");
+                
                 System.out.println("1. Registrar Usuario\n2. Iniciar sesión\n3. Registrar comida\n4. Calcular calorías\n5. Ejercicios\n0. Salir del programa"); 
+                System.out.print("Ingresa el número de opción: ");
                 int opcion = scn.nextInt();
                 switch (opcion) {
                     case 1:

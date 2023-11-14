@@ -128,9 +128,34 @@ public class Controlador {
                     encontrado = true;
                 }
             }
-
+        if (!encontrado) {
+            String archivo = "archivoCSVnutrientes.csv";
+            try {
+                FileWriter fw = new FileWriter(archivo);
+                BufferedWriter bw = new BufferedWriter(fw);
+                System.out.print("Ingrese el nombre del alimento: ");
+                String alimentoNOmbre = scn.nextLine();
+                System.out.print("Ingresa la medida (en taza, oz, qt...): ");
+                String medidaIngresada = scn.nextLine();
+                scn = new Scanner(System.in);
+                System.out.print("Ingresa la cantidad de gramos: ");
+                int gramos = scn.nextInt();
+                System.out.print("Ingresa la cantidad de calorías: ");
+                int caloriasIngresadas = scn.nextInt();
+                System.out.print("Ingresa la cantidad de proteína: ");
+                int cantidadProteina = scn.nextInt();
+                System.out.print("Ingresa la cantidad de grasas: ");
+                int grasasIngresadas = scn.nextInt();
+                bw.write(alimentoNOmbre + "," + medidaIngresada + "," + gramos+ "," + caloriasIngresadas + "," + cantidadProteina + ","+ grasasIngresadas + "," + "Alimento,Medida,Gramos,Calorías,Proteína,Grasa,Grasa saturada,Fibra,Carbohidratos,Categoría,Fecha\r\n"); 
+                bw.newLine();
+                bw.close();
+    
+            } catch (IOException e) {
+                System.out.println("Error encontrado: " + e.getMessage());
+            }
+        }
             if (!encontrado) {
-                System.out.print("No se ha encontrado el alimento, por favor ingresarlo.");
+                System.out.print("No se ha encontrado el alimento, espere a una actualización.");
             }
 
         } catch (IOException e) {
@@ -141,8 +166,8 @@ public class Controlador {
     public void calcularCalorias(String fecha){
         String archivoCSV = "registroComidaCSV.csv";
         String datoBuscado = fecha;
-        int columnaBuscada = 10; // Columna 11 (índice 10)
-        int columnaSuma = 3; // Columna 3 (índice 2)
+        int columnaBuscada = 10;
+        int columnaSuma = 3; 
         double suma = 0;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(archivoCSV))) {
@@ -152,7 +177,7 @@ public class Controlador {
                 if (fields.length > columnaBuscada && fields.length > columnaSuma) {
                     String valorBuscado = fields[columnaBuscada];
 
-                    if (valorBuscado.equals(datoBuscado)) {
+                    if (valorBuscado.equalsIgnoreCase(datoBuscado)) {
                         double valorSuma = Double.parseDouble(fields[columnaSuma]);
                         suma += valorSuma;
                     }

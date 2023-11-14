@@ -1,4 +1,8 @@
 Alimento,Medida,Gramos,Calorías,Proteína,Grasa,Grasa saturada,Fibra,Carbohidratos,Categoría,Fecha
 Hamburguesa,3 oz.,85,245,21,17,15,0,0, "Carne, Aves",15/02/2023
+Leche desnatada,1 qt.,984,360,36,t,t,0,52,Productos lácteos,15/02/2023
 Cacao,1 taza,252,235,8,11,10,0,26,Productos lácteos,17/05/2023
 Lima,1 taza,160,140,8,t,t,3.0,24,Verduras A-E,17/05/2023
+Hamburguesa,3 oz.,85,245,21,17,15,0,0, "Carne, Aves",14/05/2023
+Suero de mantequilla,1 taza,246,127,9,5,4,0,13,Productos lácteos,14/05/2023
+Cacao,1 taza,252,235,8,11,10,0,26,Productos lácteos,14/05/2023
