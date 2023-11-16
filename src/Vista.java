@@ -38,8 +38,7 @@ public class Vista {
                         controlador.calcularCalorias(fecha);
                         break;
                     case 5:
-                        controlador.crearListadeEjerciciosCSV();
-                        System.out.print("¿Qué te gustaría trabajar?\n1. Pierna\n2. Brazos\n3. Abdomen");
+                        controlador.ejercicio();
                     case 0:
                         System.exit(0);
                         break;
